@@ -288,3 +288,57 @@ You should execute the following command to reduce the gcc version:
 $ update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-9 100
 $ update-alternatives --config gcc
 ```
+
+```
+修复无法使用app的bug
+1、使用以下脚本
+2、运行脚本
+3、在管理页面打开一下goodcloud（无法远程管理），然后手机app连上之后就可以关闭goodcloud了（占内存）
+
+opkg install xxd
+mac='aaaaaaaaaaaa'
+sn='aaaaaaaaaaaaaaaa'
+sn1='aaaaaaaaaaaaaaaa'
+ddns='aaaaaaa'
+echo $mac | xxd -r -p | dd of=/dev/mtdblock7 bs=1 seek=176
+echo $ddns| dd of=/dev/mtdblock7 bs=1 seek=192
+echo $sn| dd of=/dev/mtdblock7 bs=1 seek=208
+echo $sn1| dd of=/dev/mtdblock7 bs=1 seek=224
+sync
+reboot
+
+以下改动没有在此github中
+
+
+bug修复：
+1、修复了 版本号太低的bug
+2、修复了中继模式无法使用的bug
+3、修复了需要重启才能应用配置的bug
+4、修复了wifi显示正在雷达规避检测的bug
+特性：
+1、wifi驱动开启了激进的内存回收策略，理想状态下节省了30M内存
+2、开启了zram，又剩下几M内存
+3、解锁了部分在国内禁用的频段，设备支持的情况下干扰会很少（5g开自动频段会导致部分手机搜不到信号）
+4、不建议各位使用无线配置中继，扫描wifi会断开连接。
+新增功能：
+1、glinet提供的域名屏蔽服务
+2、glinet提供的nas服务，如果有条件改usb的话可以用一用
+3、酸酸乳（其他占内存太大了不建议）
+4、UA2F 适合校园网用户
+5、l2tp 适合校园网用户
+6、mtkwifi控制面板，是和专业用户
+7、easymesh配置面板（未经测试）
+
+
+
+新版本小修了一下bug，最晚晚上发出来
+1、将版本号改为9.9，避免手欠升级
+2、将系统显示的储存空间从128改成108，满足强迫症
+3、revert了gl hnat的一些改动，目前无线中继不再是5M，能七八百兆了
+4、移除nas、usb 网卡、usb nas等无法使用的功能
+5、移除了ssrp和mtkwifi这些不是每个人都用得上的功能
+6、目前怀疑高负载是io引发的，实际上cpu占用并不高，可以忽略
+7、测试了一下内存回收，发现开不开对性能影响不大，开启能额外获得30M内存，因此默认开起来了
+8、计划发布个sdk，需要啥内核模块可以自己编译着玩
+
+```
