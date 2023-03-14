@@ -334,7 +334,7 @@ bug修复：
 新版本小修了一下bug，最晚晚上发出来
 1、将版本号改为9.9，避免手欠升级
 2、将系统显示的储存空间从128改成108，满足强迫症
-3、revert了gl hnat的一些改动，目前无线中继不再是5M，能七八百兆了
+3、revert了gl hnat的一些改动，目前无线中继不再是5M，能七八百兆了 (删除3004-target-mediatek-mtkhnat-fix-for-gl.patch)
 4、移除nas、usb 网卡、usb nas等无法使用的功能
 5、移除了ssrp和mtkwifi这些不是每个人都用得上的功能
 6、目前怀疑高负载是io引发的，实际上cpu占用并不高，可以忽略
