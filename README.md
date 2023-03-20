@@ -341,4 +341,25 @@ bug修复：
 7、测试了一下内存回收，发现开不开对性能影响不大，开启能额外获得30M内存，因此默认开起来了
 8、计划发布个sdk，需要啥内核模块可以自己编译着玩
 
+
+本次更新为小更新，修复和添加一些小功能
+1、内置ssrp
+2、新增tailsacle设置中心（我不会用）
+3、移除usb相关功能
+4、内置xxd软件包，改串号更方便
+5、将系统版本改为4.90，屏蔽升级的同时能使用云平台
+6、内置xl2tpd （不确定可不可用）
+经过测试，可以使用其他机型的串号，可以考虑入手旧款机型，如b1300、sft1200 、s750等100出头的机型。谴责盗用串号行为。
+新版改串脚本：
+mac='aaaaaaaaaaaa' 
+sn='aaaaaaaaaaaaaaaa' 
+sn1='aaaaaaaaaaaaaaaa' 
+ddns='aaaaaaa' 
+echo $mac | xxd -r -p | dd of=/dev/mtdblock7 bs=1 seek=176 
+echo $ddns| dd of=/dev/mtdblock7 bs=1 seek=192 
+echo $sn| dd of=/dev/mtdblock7 bs=1 seek=208 
+echo $sn1| dd of=/dev/mtdblock7 bs=1 seek=224 
+sync 
+reboot
+
 ```
